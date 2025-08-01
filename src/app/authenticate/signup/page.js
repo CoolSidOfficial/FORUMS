@@ -10,7 +10,7 @@ function Signup() {
         <div className="text-2xl font-bold mb-2">Join {brand_name}</div>
         <div className="mb-6 text-center">{desc}</div>
 
-        <form action="https://localhost:3000/auth/signup" method="POST" className="flex flex-col w-full gap-4">
+        <form action="http://20.120.176.155/auth/signup" method="POST" className="flex flex-col w-full gap-4">
           <div className="flex flex-col">
             <label htmlFor="username" className="mb-1">Username:</label>
             <input
