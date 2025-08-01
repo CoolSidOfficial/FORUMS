@@ -16,7 +16,7 @@ function Signup() {
             <input
               type="text"
               id="username"
-              name="u_name"
+              name="username"
               className="border rounded p-2 text-black"
             />
           </div>
@@ -26,7 +26,7 @@ function Signup() {
             <input
               type="password"
               id="password"
-              name="u_pass"
+              name="password"
               className="border rounded p-2 text-black"
             />
           </div>
