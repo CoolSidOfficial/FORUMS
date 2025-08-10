@@ -42,7 +42,7 @@ function categories() {
    
    <div className="grid  grid-cols-3 gap-5   ">
     {cat_data.map((each,index)=>(
-        <Link  href="" key={index} className= "bg-[#1F2937] text-2xl p-6 rounded-xl h-max">
+        <Link  href="" key={index} className= "bg-[#1F2937] text-xl p-6 rounded-xl h-max">
           <span>{each.icon}</span>
           <span className="text-2xl font-semibold">{each.text}</span>
         <div>Discuss {each.text} and get expert advise</div>

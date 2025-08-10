@@ -1,11 +1,11 @@
 import React from 'react';
-
+import Link from 'next/link';
 function Signup() {
   const brand_name = "CoolGuide";
   const desc = "Create your account to start discussing electronics";
 
   return (
-    <div className="flex flex-col justify-center min-h-screen items-center bg-black">
+    <div className="flex flex-col justify-center min-h-screen items-center bg-[#030712]">
       <div className="text-white m-10 bg-[#1F2937] w-full max-w-md p-6 text-xl flex flex-col items-center rounded shadow-lg">
         <div className="text-2xl font-bold mb-2">Join {brand_name}</div>
         <div className="mb-6 text-center">{desc}</div>
@@ -17,7 +17,8 @@ function Signup() {
               type="text"
               id="username"
               name="username"
-              className="border rounded p-2 text-black"
+              className="border rounded p-2 "
+              required
             />
           </div>
 
@@ -27,7 +28,8 @@ function Signup() {
               type="password"
               id="password"
               name="password"
-              className="border rounded p-2 text-black"
+              className="border rounded p-2"
+              required
             />
           </div>
 
@@ -38,6 +40,7 @@ function Signup() {
               id="confirm_password"
               name="cu_pass"
               className="border rounded p-2 text-black"
+              required
             />
           </div>
 
@@ -47,6 +50,10 @@ function Signup() {
             className="bg-blue-600 text-white font-mono rounded py-2 mt-2 hover:bg-blue-700 cursor-pointer"
           />
         </form>
+         <div className='text-lg'>OR</div>
+        <div className='text-lg p-4'>Continue with Google</div>
+<Link href={""} className='border solid w-max p-2 text-4xl   hover:text-amber-800 font-bold'>Google</Link>
+
       </div>
     </div>
   );
