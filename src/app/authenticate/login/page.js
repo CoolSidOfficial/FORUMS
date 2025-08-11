@@ -39,7 +39,7 @@ function Login() {
             className="bg-blue-600 text-white font-mono rounded py-2 mt-2 hover:bg-blue-700 cursor-pointer"
           />
         </form>
-        <div className='p-4 text-lg'>Don't have an account? <Link className='text-blue-500 hover:text-blue-400'  href="/authenticate/signup">Sign up here</Link> </div>
+        <div className='p-4 text-lg'>Don&apos; have an account? <Link className='text-blue-500 hover:text-blue-400'  href="/authenticate/signup">Sign up here</Link> </div>
         <div className='text-lg'>OR</div>
         <div className='text-lg p-4'>Continue with Google</div>
         <Link href={""} className='border solid w-max p-2 text-4xl   hover:text-amber-800 font-bold'>Google</Link>
