@@ -6,6 +6,11 @@ function Signup() {
 
   return (
     <div className="flex flex-col justify-center min-h-screen items-center bg-[#030712]">
+       <header className="flex bg-[#1F2937] p-4 items-center border-b-amber-100 m-2">
+            <Link href="/tabs/categories"  className="font-semibold p-4"> &#8592; Back to forum</Link>
+            <div className="text-2xl ml-4">CoolGuide</div>
+            <div className="bg-orange-500 w-max rounded-xl  text-xs p-1 ml-4 text-center">Singup</div>
+        </header>
       <div className="text-white m-10 bg-[#1F2937] w-full max-w-md p-6 text-xl flex flex-col items-center rounded shadow-lg">
         <div className="text-2xl font-bold mb-2">Join {brand_name}</div>
         <div className="mb-6 text-center">{desc}</div>

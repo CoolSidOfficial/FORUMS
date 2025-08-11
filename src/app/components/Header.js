@@ -7,7 +7,7 @@ function Header() {
             <div className="text-[#286cc5]   text-3xl ">Coolguide forum</div>
             <div className="p-3  bg-[#14274E] rounded hover:text-[#8cadf0] ">Electronics Hub</div>
             <input type="search" placeholder="Search Discussions.." className="ml-auto border border-gray-200 rounded  h-9 w-xs text-white"></input>
-            <Link className="bg-[#EA580C] md:text-lg p-2" href="">Product Search</Link>
+            <Link className="bg-[#EA580C] md:text-lg p-2" href="/products-search">Product Search</Link>
             <Link className="bg-[#2563EB] md:text-lg p-2" href="https://coolguide.tech">Main Site</Link>
             <Link  className="border md:text-lg p-2"href="/authenticate/login">Register/Login</Link>
         </div>
