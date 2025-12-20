@@ -38,6 +38,12 @@ export default function ProductSearch(){
     active_minutes_ago: 15
   }
 ];
+const product_categories=[
+ {"id":1,"name":"Smartphones","discussed_times":234,"logo":"https://images.samsung.com/is/image/samsung/p6pim/in/smartphones/galaxy-s23-ultra/s23-ultra-5g-black-select-256gb-1-1.jpg?$PD_GALLERY_L_JPG$"},
+ {"id":2,"name":"Laptops","discussed_times":234,"logo":"https://images.samsung.com/is/image/samsung/p6pim/in/laptops/galaxybook-pro-14-2023/sbp14-2023-1-1.jpg?$PD_GALLERY_L_JPG$"},
+ {"id":3,"name":"Audio","discussed_times":234,"logo":"https://images.samsung.com/is/image/samsung/p6pim/in/audio/galaxy-buds-pro-4/galaxy-buds-pro-4-1-1.jpg?$PD_GALLERY_L_JPG$"},
+ {"id":4,"name":"Gaming","discussed_times":234,"logo":"https://images.samsung.com/is/image/samsung/p6pim/in/gaming/galaxy-controller-s4/galaxy-controller-s4-1-1.jpg?$PD_GALLERY_L_JPG$"},
+]
 
     return(
     <div >
@@ -81,23 +87,20 @@ export default function ProductSearch(){
                 ))}
                 </div> 
             </div>
-            <div className="">
-                <div>Popular Product Categories</div>
-                <div>Most discussed product types</div>
-                <div className="flex">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+            <div className="bg-[#1F2937] p-6 rounded-lg mt-10">
+  <div className="text-4xl">Popular Product Categories</div>
+  <div className=" text-[#374151] text-lg ">Most discussed product types</div>
 
-                </div>
-
-            </div>
-
+  <div data-label="second_container" className="flex">
+    {product_categories.map((each) => (
+      <div key={each.id} className=" w-70  rounded text-xl p-5  text-center ">
+        <div className="bg-[#374151] p-2 rounded  ">{each.name}</div>
+        <div className="bg-[#374151] p-2 rounded "  >{each.discussed_times}</div>
+        <Link href={each.logo} className="bg-[#374151]"></Link>
+      </div>
+    ))}
+  </div>
+</div>
         </div>
     </div>
-)
-
-}
-
-
+)}
