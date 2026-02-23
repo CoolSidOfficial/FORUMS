@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 // Dummy Data
 const samplePosts = [
   {
@@ -27,15 +28,16 @@ const samplePosts = [
   },
 ];
 
-export default function PostsByCategory({ params }) {
+export default async function PostsByCategory({ params }) {
+  // ✅ MUST unwrap params in Next 15
+  const { category } = await params;
+
   return (
     <div className="max-w-4xl mx-auto p-8">
-  
 
       {/* Top Navigation */}
       <div className="flex justify-between items-center mb-10">
 
-        {/* Left Side - Back Button */}
         <Link
           href="/tabs/categories"
           className="text-gray-400 hover:text-white transition"
@@ -43,24 +45,25 @@ export default function PostsByCategory({ params }) {
           ← Back to Categories
         </Link>
 
-        {/* Right Side - Create Button */}
-       <div className="flex justify-end mb-6">
+        <Link
+          href={`/posts/${category}/create`}
+          className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Create Post
+        </Link>
 
-</div>
       </div>
 
-      {/* Page Title */}
       <h1 className="text-3xl font-bold text-center capitalize mb-12">
-        {params.category} Posts
+        {category} Posts
       </h1>
 
-      {/* Posts Column */}
-      <div className="flex flex-col p-2  ">   {/* 🔥 increased spacing */}
+      <div className="flex flex-col gap-6">
 
         {samplePosts.map((post) => (
           <div
             key={post._id}
-            className="border mt-2 border-gray-700 rounded-xl p-6 hover:shadow-lg transition"
+            className="border border-gray-700 rounded-xl p-6 hover:shadow-lg transition"
           >
             <h2 className="text-2xl font-semibold mb-3">
               {post.title}
