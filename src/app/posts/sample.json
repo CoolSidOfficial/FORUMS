@@ -1,0 +1,133 @@
+
+
+
+ const samplePosts = [
+  // ------------------ SMARTPHONES ------------------
+  {
+    _id: "1",
+    category: "smartphones",
+    title: "Best Budget Smartphone 2026",
+    author: "Siddhant",
+    createdAt: "2026-02-20",
+    content:
+      "This is a detailed review of the best budget smartphone available in 2026 with amazing performance and battery life.",
+  },
+  {
+    _id: "2",
+    category: "smartphones",
+    title: "Top 5 Flagship Phones Compared",
+    author: "Admin",
+    createdAt: "2026-02-18",
+    content:
+      "We compare the top 5 flagship smartphones based on performance, camera quality, and battery efficiency.",
+  },
+  {
+    _id: "3",
+    category: "smartphones",
+    title: "Is Foldable Worth It?",
+    author: "TechGuy",
+    createdAt: "2026-02-15",
+    content:
+      "Foldable phones are evolving rapidly. Let’s explore whether they are worth your investment in 2026.",
+  },
+
+  // ------------------ LAPTOPS ------------------
+  {
+    _id: "4",
+    category: "laptops",
+    title: "Best Laptop for Programming",
+    author: "Siddhant",
+    createdAt: "2026-02-19",
+    content:
+      "Looking for a laptop for coding? Here are the best laptops for developers in 2026.",
+  },
+  {
+    _id: "5",
+    category: "laptops",
+    title: "Gaming Laptop vs MacBook",
+    author: "Admin",
+    createdAt: "2026-02-17",
+    content:
+      "Should you buy a gaming laptop or a MacBook for productivity and gaming?",
+  },
+
+  // ------------------ GAMING ------------------
+  {
+    _id: "6",
+    category: "gaming",
+    title: "PS5 vs Xbox Series X in 2026",
+    author: "GamerX",
+    createdAt: "2026-02-16",
+    content:
+      "A complete comparison between PlayStation 5 and Xbox Series X performance and exclusives.",
+  },
+  {
+    _id: "7",
+    category: "gaming",
+    title: "Best Budget Gaming Setup",
+    author: "Siddhant",
+    createdAt: "2026-02-14",
+    content:
+      "How to build a budget gaming setup under ₹80,000 in India.",
+  },
+
+  // ------------------ AUDIO ------------------
+  {
+    _id: "8",
+    category: "audio",
+    title: "Best Noise Cancelling Headphones",
+    author: "Admin",
+    createdAt: "2026-02-13",
+    content:
+      "Top ANC headphones for travel and office use in 2026.",
+  },
+  {
+    _id: "9",
+    category: "audio",
+    title: "Soundbar vs Home Theater",
+    author: "AudioPro",
+    createdAt: "2026-02-12",
+    content:
+      "Which is better for your living room? Soundbar or full home theater system?",
+  },
+
+  // ------------------ AIR PURIFIERS ------------------
+  {
+    _id: "10",
+    category: "airpurifiers",
+    title: "Best Air Purifier for Delhi Pollution",
+    author: "Siddhant",
+    createdAt: "2026-02-11",
+    content:
+      "Top air purifiers that handle PM2.5 and heavy pollution effectively.",
+  },
+  {
+    _id: "11",
+    category: "airpurifiers",
+    title: "HEPA vs Activated Carbon Filter",
+    author: "Admin",
+    createdAt: "2026-02-10",
+    content:
+      "Understanding the difference between HEPA and carbon filters.",
+  },
+
+  // ------------------ TELEVISIONS ------------------
+  {
+    _id: "12",
+    category: "televisions",
+    title: "Best 55-inch 4K TV in 2026",
+    author: "TechGuy",
+    createdAt: "2026-02-09",
+    content:
+      "Here are the best 55-inch 4K smart TVs for your home entertainment.",
+  },
+  {
+    _id: "13",
+    category: "televisions",
+    title: "OLED vs QLED Explained",
+    author: "Admin",
+    createdAt: "2026-02-08",
+    content:
+      "Confused between OLED and QLED? Let’s break it down.",
+  },
+];
