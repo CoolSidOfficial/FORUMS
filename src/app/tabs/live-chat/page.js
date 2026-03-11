@@ -1,4 +1,9 @@
+"use client"
 import Link from "next/link"
+import useAuth from "@/app/hooks/useAuth";
+
+
+
 function chat() {
   const messages = [
     { username: 'T', fullName: 'TechReviewer', text: 'Just got the new iPhone 15 Pro Max! The camera quality is insane', time: 'Just now' },
@@ -7,6 +12,11 @@ function chat() {
     { username: 'G', fullName: 'GamerDude', text: 'Anyone tried gaming on it? Performance looks promising', time: '2 minutes ago' },
     { username: 'A', fullName: 'AudioPhile', text: 'The spatial audio with AirPods Pro is mind-blowing!', time: '3 minutes ago' },
   ];
+const { user, loading } = useAuth();
+  
+  if (loading) {
+    return <p>Checking authentication...</p>;
+  }
   return (
     <div>
       <div className="flex" >
