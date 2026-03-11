@@ -15,12 +15,12 @@ export default function useAuth() {
 
       try {
 
-        const res = await fetch("http://localhost:4000/auth/verify", {
+        const res = await fetch("https://forums-backend-production-b81e.up.railway.app/auth/verify", {
           credentials: "include" 
         });
 
         if (!res.ok) {
-          router.push("http://localhost:3000/authenticate/login");
+          router.push("https://forums-self.vercel.app/authenticate/login");
           return;
         }
 
@@ -30,7 +30,7 @@ export default function useAuth() {
 
       } catch (err) {
 
-        router.push("http://localhost:3000/authenticate/login");
+        router.push("https://forums-self.vercel.app/authenticate/login");
 
       } finally {
 
