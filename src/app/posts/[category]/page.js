@@ -1,41 +1,16 @@
 import Link from "next/link";
-
-// Dummy Data
-const samplePosts = [
-  {
-    _id: "1",
-    title: "Best Budget Smartphone 2026",
-    author: "Siddhant",
-    createdAt: "2026-02-20",
-    content:
-      "This is a detailed review of the best budget smartphone available in 2026 with amazing performance and battery life.",
-  },
-  {
-    _id: "2",
-    title: "Top 5 Flagship Phones Compared",
-    author: "Admin",
-    createdAt: "2026-02-18",
-    content:
-      "We compare the top 5 flagship smartphones based on performance, camera quality, and battery efficiency.",
-  },
-  {
-    _id: "3",
-    title: "Is Foldable Worth It?",
-    author: "TechGuy",
-    createdAt: "2026-02-15",
-    content:
-      "Foldable phones are evolving rapidly. Let’s explore whether they are worth your investment in 2026.",
-  },
-];
+import posts from "./sample";
 
 export default async function PostsByCategory({ params }) {
-  // ✅ MUST unwrap params in Next 15
   const { category } = await params;
+
+  const filteredPosts = posts.filter(
+    (post) => post.category === category
+  );
 
   return (
     <div className="max-w-4xl mx-auto p-8">
 
-      {/* Top Navigation */}
       <div className="flex justify-between items-center mb-10">
 
         <Link
@@ -60,7 +35,7 @@ export default async function PostsByCategory({ params }) {
 
       <div className="flex flex-col gap-6">
 
-        {samplePosts.map((post) => (
+        {filteredPosts.map((post) => (
           <div
             key={post._id}
             className="border border-gray-700 rounded-xl p-6 hover:shadow-lg transition"

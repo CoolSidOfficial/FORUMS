@@ -1,8 +1,4 @@
-
-
-
- const samplePosts = [
-  // ------------------ SMARTPHONES ------------------
+const posts = [
   {
     _id: "1",
     category: "smartphones",
@@ -31,7 +27,7 @@
       "Foldable phones are evolving rapidly. Let’s explore whether they are worth your investment in 2026.",
   },
 
-  // ------------------ LAPTOPS ------------------
+  // LAPTOPS
   {
     _id: "4",
     category: "laptops",
@@ -51,7 +47,7 @@
       "Should you buy a gaming laptop or a MacBook for productivity and gaming?",
   },
 
-  // ------------------ GAMING ------------------
+  // GAMING
   {
     _id: "6",
     category: "gaming",
@@ -71,15 +67,14 @@
       "How to build a budget gaming setup under ₹80,000 in India.",
   },
 
-  // ------------------ AUDIO ------------------
+  // AUDIO
   {
     _id: "8",
     category: "audio",
     title: "Best Noise Cancelling Headphones",
     author: "Admin",
     createdAt: "2026-02-13",
-    content:
-      "Top ANC headphones for travel and office use in 2026.",
+    content: "Top ANC headphones for travel and office use in 2026.",
   },
   {
     _id: "9",
@@ -91,7 +86,7 @@
       "Which is better for your living room? Soundbar or full home theater system?",
   },
 
-  // ------------------ AIR PURIFIERS ------------------
+  // AIR PURIFIERS
   {
     _id: "10",
     category: "airpurifiers",
@@ -111,7 +106,7 @@
       "Understanding the difference between HEPA and carbon filters.",
   },
 
-  // ------------------ TELEVISIONS ------------------
+  // TELEVISIONS
   {
     _id: "12",
     category: "televisions",
@@ -131,3 +126,5 @@
       "Confused between OLED and QLED? Let’s break it down.",
   },
 ];
+
+export default posts;
