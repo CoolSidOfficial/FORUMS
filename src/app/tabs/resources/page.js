@@ -2,7 +2,7 @@ import Link from "next/link"
 
 function resources() {
  const  resources_guide=[
-    {"id":1,"title":"Buying Guides","short_desc":"Expert Recommendations for every Budget","link":"https://coolguide.tech/buying-guide"},
+    {"id":1,"title":"Buying Guides","short_desc":"Expert Recommendations for every Budget","link":"https://coolguide.live/buying-guide"},
     {"id":2,"title":"Troubleshooting","short_desc":"Expert Recommendations for every Budget","link":""},
     {"id":3,"title":"Video Tutorials","short_desc":"Watch Videos related to our products","link":""},
   ]
