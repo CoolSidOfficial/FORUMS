@@ -111,7 +111,7 @@ function Login() {
         <div className="text-lg p-4">Continue with Google</div>
 
         <Link
-          href=""
+          href="/auth/google"
           className="border w-max p-2 text-4xl hover:text-amber-800 font-bold"
         >
           Google
