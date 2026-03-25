@@ -12,14 +12,37 @@ export default function CreatePostPage() {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log({ title, author, content, category });
+  try {
+    const res = await fetch(
+      `https://forums-backend-production-b81e.up.railway.app/api/posts/${category}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          author,
+          content,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to create post");
+    }
+
+    alert("Post created");
 
     router.push(`/posts/${category}`);
-  };
-
+  } catch (err) {
+    console.error(err);
+    alert("Error creating post");
+  }
+};
   return (
     <div className="max-w-2xl mx-auto p-8">
       <Link
