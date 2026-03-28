@@ -4,6 +4,7 @@ useEffect(() => {
       const token = localStorage.getItem("token");
 
       if (!token) {
+        setLoading(false);
         router.push("/authenticate/login");
         return;
       }
@@ -18,6 +19,7 @@ useEffect(() => {
       );
 
       if (!res.ok) {
+        setLoading(false);
         router.push("/authenticate/login");
         return;
       }
