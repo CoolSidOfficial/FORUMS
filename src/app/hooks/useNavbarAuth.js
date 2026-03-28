@@ -1,36 +1,60 @@
-useEffect(() => {
-  const checkAuth = async () => {
-    try {
-      const token = localStorage.getItem("token");
+"use client";
 
-      if (!token) {
-        setUser(null);
-        return;
-      }
+import { useEffect, useState } from "react";
 
-      const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/auth/verify",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+export default function Navbar() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          setUser(null);
+          setLoading(false);
+          return;
         }
-      );
 
-      if (!res.ok) {
+        const res = await fetch(
+          "https://forums-backend-production-b81e.up.railway.app/auth/verify",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!res.ok) {
+          setUser(null);
+          setLoading(false);
+          return;
+        }
+
+        const data = await res.json();
+        setUser(data.user);
+      } catch {
         setUser(null);
-        return;
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const data = await res.json();
-      setUser(data.user);
+    checkAuth();
+  }, []);
 
-    } catch {
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  checkAuth();
-}, []);
+  return (
+    <nav>
+      {user ? (
+        <p>Welcome, {user.name}</p>
+      ) : (
+        <a href="/authenticate/login">Login</a>
+      )}
+    </nav>
+  );
+}
