@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -8,16 +8,20 @@ function Login() {
   const brand_name = "CoolGuide";
   const desc = "Login to your account to continue the discussion";
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(e) {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
     const username = e.target.username.value;
     const password = e.target.password.value;
 
     try {
       const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/api/auth/login", // ✅ FIXED URL
+        "https://forums-backend-production-b81e.up.railway.app/auth/login",
         {
           method: "POST",
           headers: {
@@ -28,29 +32,30 @@ function Login() {
         }
       );
 
-      const data = await res.json(); // ✅ always parse
+      const data = await res.json();
 
       if (res.ok) {
         router.push("/");
       } else {
-        alert(data.message || "Login failed");
+        setError(data.message || "Login failed. Please check your credentials.");
       }
-
     } catch (err) {
       console.error(err);
-      alert("Server error");
+      setError("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <div className="flex flex-col justify-center min-h-screen items-center bg-[#030712]">
 
-      <header className="flex bg-[#1F2937] p-4 items-center border-b-amber-100 w-full">
-        <Link href="/tabs/categories" className="font-semibold p-4">
+      <header className="flex bg-[#1F2937] p-4 items-center border-b border-b-gray-600 w-full">
+        <Link href="/tabs/categories" className="font-semibold p-4 text-white hover:text-gray-300">
           ← Back to forum
         </Link>
-        <div className="text-2xl ml-4">CoolGuide</div>
-        <div className="bg-orange-500 w-max rounded-xl text-xs p-1 ml-4 text-center">
+        <div className="text-2xl ml-4 text-white">CoolGuide</div>
+        <div className="bg-orange-500 w-max rounded-xl text-xs p-1 ml-4 text-center text-white">
           Login
         </div>
       </header>
@@ -61,42 +66,53 @@ function Login() {
           Welcome Back to {brand_name}
         </div>
 
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center text-gray-300 text-base">
           {desc}
         </div>
 
+        {/* ✅ Show error message instead of alert() */}
+        {error && (
+          <div className="w-full mb-4 p-3 bg-red-500/20 border border-red-500 text-red-400 rounded text-sm text-center">
+            {error}
+          </div>
+        )}
+
         <form
           onSubmit={handleLogin}
-          className="flex flex-col w-full gap-4 text-white font-mono"
+          className="flex flex-col w-full gap-4 font-mono"
         >
-
           <div className="flex flex-col">
-            <label htmlFor="username" className="mb-1">Username:</label>
+            <label htmlFor="username" className="mb-1 text-white">Username:</label>
             <input
               type="text"
               id="username"
               name="username"
-              className="border rounded p-2"
+              className="border border-gray-600 rounded p-2 bg-[#374151] text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+              placeholder="Enter your username"
               required
             />
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="password" className="mb-1">Password:</label>
+            <label htmlFor="password" className="mb-1 text-white">Password:</label>
             <input
               type="password"
               id="password"
               name="password"
-              className="border rounded p-2"
+              // ✅ Fixed: same background fix
+              className="border border-gray-600 rounded p-2 bg-[#374151] text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+              placeholder="Enter your password"
               required
             />
           </div>
 
-          <input
+          <button
             type="submit"
-            value="Login"
-            className="bg-blue-600 text-white font-mono rounded py-2 mt-2 hover:bg-blue-700 cursor-pointer"
-          />
+            disabled={loading}
+            className="bg-blue-600 text-white font-mono rounded py-2 mt-2 hover:bg-blue-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
 
         </form>
 
@@ -110,16 +126,16 @@ function Login() {
           </Link>
         </div>
 
-        <div className="text-lg">OR</div>
+        <div className="text-lg text-gray-400">OR</div>
 
         <div className="text-lg p-4">Continue with Google</div>
 
-        <Link
-          href="/auth/google"
-          className="border w-max p-2 text-4xl hover:text-amber-800 font-bold"
-        >
-          Google
-        </Link>
+        {/* ✅ Fixed: points to your backend URL, not a relative Next.js route */}
+        
+       <a    href="https://forums-backend-production-b81e.up.railway.app/auth/google"
+          className="border border-gray-500 w-max px-6 py-3 text-lg rounded hover:bg-white hover:text-black transition-colors font-bold">
+         Sign in with Google
+        </a>
 
       </div>
     </div>
