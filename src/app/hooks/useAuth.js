@@ -1,48 +1,36 @@
-"use client";
+useEffect(() => {
+  const checkAuth = async () => {
+    try {
+      const token = localStorage.getItem("token");
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-
-export default function useAuth() {
-
-  const router = useRouter();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-
-    const checkAuth = async () => {
-
-      try {
-
-        const res = await fetch("https://forums-backend-production-b81e.up.railway.app/auth/verify", {
-          credentials: "include" 
-        });
-
-        if (!res.ok) {
-          router.push("https://forums-self.vercel.app/authenticate/login");
-          return;
-        }
-
-        const data = await res.json();
-
-        setUser(data.user);
-
-      } catch (err) {
-
-        router.push("https://forums-self.vercel.app/authenticate/login");
-
-      } finally {
-
-        setLoading(false);
-
+      if (!token) {
+        router.push("/authenticate/login");
+        return;
       }
 
-    };
+      const res = await fetch(
+        "https://forums-backend-production-b81e.up.railway.app/auth/verify",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    checkAuth();
+      if (!res.ok) {
+        router.push("/authenticate/login");
+        return;
+      }
 
-  }, [router]);
+      const data = await res.json();
+      setUser(data.user);
 
-  return { user, loading };
-}
+    } catch (err) {
+      router.push("/authenticate/login");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  checkAuth();
+}, [router]);

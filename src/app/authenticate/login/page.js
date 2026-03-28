@@ -27,7 +27,6 @@ function Login() {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
           body: JSON.stringify({ username, password }),
         }
       );
@@ -35,7 +34,8 @@ function Login() {
       const data = await res.json();
 
       if (res.ok) {
-        router.push("/");
+         localStorage.setItem("token", data.token);
+         router.push("/");
       } else {
         setError(data.message || "Login failed. Please check your credentials.");
       }
