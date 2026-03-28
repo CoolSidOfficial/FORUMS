@@ -57,8 +57,12 @@ function Signup() {
         </form>
          <div className='text-lg'>OR</div>
         <div className='text-lg p-4'>Continue with Google</div>
-<Link href={""} className='border solid w-max p-2 text-4xl   hover:text-amber-800 font-bold'>Google</Link>
-
+<Link
+  href="http://localhost:5000/auth/google"
+  className="border solid w-max p-2 text-4xl hover:text-amber-800 font-bold"
+>
+  Continue with Google
+</Link>
       </div>
     </div>
   );

@@ -16,19 +16,23 @@ function Login() {
     const password = e.target.password.value;
 
     try {
-      const res = await fetch("https://forums-backend-production-b81e.up.railway.app/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify({ username, password })
-      });
+      const res = await fetch(
+        "https://forums-backend-production-b81e.up.railway.app/api/auth/login", // ✅ FIXED URL
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ username, password }),
+        }
+      );
+
+      const data = await res.json(); // ✅ always parse
 
       if (res.ok) {
-        router.push("/"); 
+        router.push("/");
       } else {
-        const data = await res.json();
         alert(data.message || "Login failed");
       }
 

@@ -6,74 +6,73 @@ export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
 
+  // 🔥 Fake API simulation
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/auth/me",
-        { credentials: "include" }
-      );
+    setTimeout(() => {
+      const fakeUser = {
+        name: "John Doe",
+        email: "john@example.com",
+      };
 
-      if (!res.ok) {
-        window.location.href = "/authenticate/login";
-        return;
-      }
-
-      const data = await res.json();
-      setUser(data.user);
-      setName(data.user.name);
+      setUser(fakeUser);
+      setName(fakeUser.name);
       setLoading(false);
-    };
-
-    fetchUser();
+    }, 500);
   }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(
-      "https://forums-backend-production-b81e.up.railway.app/auth/update",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ name }),
-      }
-    );
-
-    if (res.ok) {
-      alert("Profile updated!");
-    } else {
-      alert("Update failed");
+    if (!name.trim()) {
+      alert("Name cannot be empty");
+      return;
     }
+
+    setUpdating(true);
+
+    // simulate API delay
+    setTimeout(() => {
+      setUser((prev) => ({ ...prev, name }));
+      setUpdating(false);
+      alert("Profile updated (fake) ✅");
+    }, 800);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading || !user) return <div className="text-center mt-10">Loading...</div>;
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-5">Your Profile</h1>
+    <div className="max-w-md mx-auto mt-10 p-5 border rounded-lg shadow">
+      <h1 className="text-2xl font-bold mb-5 text-center">Your Profile</h1>
 
       <form onSubmit={handleUpdate} className="flex flex-col gap-4">
-        
-        <input
-          type="email"
-          value={user.email}
-          disabled
-          className="border p-2 bg-gray-100"
-        />
 
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border p-2"
-        />
+        <div>
+          <label className="block text-sm mb-1">Email</label>
+          <input
+            type="email"
+            value={user.email}
+            disabled
+            className="border p-2 w-full bg-gray-100 rounded"
+          />
+        </div>
 
-        <button className="bg-blue-500 text-white p-2 rounded">
-          Update Profile
+        <div>
+          <label className="block text-sm mb-1">Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border p-2 w-full rounded"
+          />
+        </div>
+
+        <button
+          disabled={updating}
+          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:opacity-50"
+        >
+          {updating ? "Updating..." : "Update Profile"}
         </button>
       </form>
     </div>
