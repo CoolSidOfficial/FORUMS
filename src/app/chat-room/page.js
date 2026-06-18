@@ -15,7 +15,7 @@ export default function ChatRoom() {
   );
 
   useEffect(() => {
-    socketRef.current = io("https://chat.20.193.152.44.nip.io");
+    socketRef.current = io("https://chat.168-144-22-229.nip.io/");
 
     socketRef.current.on("connect", () => {
       setConnected(true);
