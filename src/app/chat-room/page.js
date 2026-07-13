@@ -10,10 +10,8 @@ export default function ChatRoom() {
   const [input, setInput] = useState("");
   const [connected, setConnected] = useState(false);
 
-  const [username] = useState(
-    "User_" + Math.floor(Math.random() * 1000)
-  );
-
+  // const username = user?.name;
+  const username = "Guest_" + Math.floor(Math.random() * 1000);
   useEffect(() => {
     socketRef.current = io("https://chat.168-144-22-229.nip.io/");
 
