@@ -1,19 +1,35 @@
 import { create } from "zustand";
 
-export const useAuthStore = create((set, get) => ({
+const useAuthStore = create((set, get) => ({
+
   user: null,
   loading: true,
 
-  setUser: (user) => set({ user }),
-  setLoading: (loading) => set({ loading }),
+
+  setUser: (user) =>
+    set({ user }),
+
+
+  setLoading: (loading) =>
+    set({ loading }),
+
+
 
   logout: () => {
+
     localStorage.removeItem("token");
-    set({ user: null });
+
+    set({
+      user: null,
+      loading: false
+    });
+
   },
 
-  // ✅ Add this
+
+
   updateProfile: async (name) => {
+
     const token = localStorage.getItem("token");
 
     const res = await fetch(
@@ -28,40 +44,90 @@ export const useAuthStore = create((set, get) => ({
       }
     );
 
-    if (!res.ok) throw new Error("Update failed");
-
-    const data = await res.json();
-    set({ user: { ...get().user, name: data.user?.name || name } });
-  },
-
-checkAuth: async () => {
-  try {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      set({ user: null, loading: false });
-      return;
-    }
-
-    const res = await fetch(
-      "https://forums-backend-production-b81e.up.railway.app/auth/verify",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
 
     if (!res.ok) {
-      set({ user: null, loading: false });
-      return;
+      throw new Error("Update failed");
     }
 
+
     const data = await res.json();
-    set({ user: data.user, loading: false });
-  } catch (err) {
-    set({ user: null, loading: false });
+
+
+    set({
+      user: {
+        ...get().user,
+        name: data.user?.name || name,
+      },
+    });
+
+  },
+
+
+
+  checkAuth: async () => {
+
+    try {
+
+      const token = localStorage.getItem("token");
+
+
+      if (!token) {
+
+        set({
+          user:null,
+          loading:false
+        });
+
+        return;
+      }
+
+
+
+      const res = await fetch(
+        "https://forums-backend-production-b81e.up.railway.app/auth/verify",
+        {
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        }
+      );
+
+
+
+      if(!res.ok){
+
+        set({
+          user:null,
+          loading:false
+        });
+
+        return;
+      }
+
+
+
+      const data = await res.json();
+
+
+      set({
+        user:data.user,
+        loading:false
+      });
+
+
+
+    } catch(error){
+
+      set({
+        user:null,
+        loading:false
+      });
+
+    }
+
   }
-},
- }));
+
+}));
+
+
 export default useAuthStore;
