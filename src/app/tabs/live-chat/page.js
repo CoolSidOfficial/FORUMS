@@ -1,70 +1,261 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-// import useAuth from "@/app/hooks/useAuth";
+import Link from "next/link";
 
 export default function Chat() {
 
-  // const { user, loading } = useAuth();
-
   const messages = [
-    { username: 'T', fullName: 'TechReviewer', text: 'Just got the new iPhone 15 Pro Max! The camera quality is insane', time: 'Just now' },
-    { username: 'P', fullName: 'PhotoPro', text: "How's the battery life compared to iPhone 14 Pro?", time: '30 seconds ago' },
-    { username: 'M', fullName: 'MobileExpert', text: 'Much better! Getting almost 2 days with moderate usage', time: '1 minute ago' },
-    { username: 'G', fullName: 'GamerDude', text: 'Anyone tried gaming on it? Performance looks promising', time: '2 minutes ago' },
-    { username: 'A', fullName: 'AudioPhile', text: 'The spatial audio with AirPods Pro is mind-blowing!', time: '3 minutes ago' },
+    {
+      username: "T",
+      fullName: "TechReviewer",
+      text: "Just got the new iPhone 15 Pro Max! The camera quality is insane",
+      time: "6 months ago"
+    },
+    {
+      username: "P",
+      fullName: "PhotoPro",
+      text: "How's the battery life compared to iPhone 14 Pro?",
+      time: "4 months ago"
+    },
+    {
+      username: "M",
+      fullName: "MobileExpert",
+      text: "Much better! Getting almost 2 days with moderate usage",
+      time: "1 month ago"
+    },
+    {
+      username: "G",
+      fullName: "GamerDude",
+      text: "Anyone tried gaming on it? Performance looks promising",
+      time: "2 days ago"
+    },
+    {
+      username: "A",
+      fullName: "AudioPhile",
+      text: "The spatial audio with AirPods Pro is mind-blowing!",
+      time: "1 year ago"
+    },
   ];
 
-  // if (loading) {
-  //   return <p>Checking authentication...</p>;
-  // }
 
   return (
-    <div>
+
+    <div
+      className="
+      bg-[#020617]
+      border
+      border-blue-900
+      rounded-2xl
+      p-5
+      shadow-xl
+      "
+    >
+
 
       {/* Header */}
-      <div className="flex items-center mb-6">
-        <span className="text-3xl">Live Electronics Chat</span>
 
-        <span className="border bg-[#12342E] text-[#4ADE80] ml-4 p-2 rounded-xl">
-          0 Online now
-        </span>
+      <div className="
+      flex
+      items-center
+      mb-6
+      "
+      >
+
+        <div>
+
+          <h2 className="
+          text-2xl
+          font-bold
+          "
+          >
+            Live Electronics Chat
+          </h2>
+
+
+          <p className="text-gray-400 text-sm">
+            Discuss gadgets with the community
+          </p>
+
+        </div>
+
+
+        <div
+          className="
+          ml-4
+          flex
+          items-center
+          gap-2
+          bg-green-950
+          text-green-400
+          border
+          border-green-700
+          px-3
+          py-2
+          rounded-full
+          text-sm
+          "
+        >
+
+          <span className="
+          w-2
+          h-2
+          bg-green-400
+          rounded-full
+          animate-pulse
+          ">
+          </span>
+
+          1 Online
+
+        </div>
+
 
         <Link
           href="/chat-room"
-          className="bg-[#15803D] rounded-2xl text-black text-lg p-2 ml-auto"
+          className="
+          ml-auto
+          bg-green-600
+          hover:bg-green-500
+          text-black
+          font-semibold
+          px-4
+          py-2
+          rounded-xl
+          transition
+          "
         >
-          Join full Chat Room
+          Join Chat
         </Link>
+
+
       </div>
 
-      {/* Chat Messages */}
-      <div className="space-y-4">
 
-        {messages.map((msg, index) => (
-          <div key={index} className="flex items-start gap-3">
+
+      {/* Messages */}
+
+      <div
+        className="
+        space-y-4
+        max-h-[420px]
+        overflow-hidden
+        "
+      >
+
+      {
+        messages.map((msg,index)=>(
+
+          <div
+            key={index}
+            className="
+            flex
+            gap-3
+            group
+            "
+          >
+
 
             {/* Avatar */}
-            <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+
+            <div
+              className="
+              w-11
+              h-11
+              rounded-full
+              bg-gradient-to-br
+              from-blue-500
+              to-purple-600
+              flex
+              items-center
+              justify-center
+              font-bold
+              text-white
+              "
+            >
               {msg.username}
             </div>
 
-            {/* Message */}
-            <div>
-              <div className="text-sm text-gray-400">
-                {msg.fullName} • {msg.time}
+
+
+            <div
+              className="
+              flex-1
+              bg-[#0f172a]
+              rounded-xl
+              p-3
+              border
+              border-gray-800
+              group-hover:border-blue-700
+              transition
+              "
+            >
+
+              <div className="
+              flex
+              justify-between
+              "
+              >
+
+                <span className="
+                font-semibold
+                text-blue-300
+                "
+                >
+                  {msg.fullName}
+                </span>
+
+
+                <span className="
+                text-xs
+                text-gray-500
+                "
+                >
+                  {msg.time}
+                </span>
+
               </div>
 
-              <div className="text-white">
+
+              <p className="
+              text-gray-200
+              mt-1
+              "
+              >
                 {msg.text}
-              </div>
+              </p>
+
+
             </div>
 
+
           </div>
-        ))}
+
+        ))
+      }
+
 
       </div>
 
+
+
+      {/* Bottom */}
+
+      <div
+        className="
+        mt-5
+        border-t
+        border-gray-800
+        pt-4
+        text-center
+        text-gray-400
+        text-sm
+        "
+      >
+        Join the discussion and share your tech experience 🚀
+      </div>
+
+
     </div>
+
   );
 }
