@@ -189,7 +189,7 @@ function Header() {
                 >
 
                   <Link
-                    href="/profile"
+                    href="/Profile"
                     className="
                     block
                     px-4 py-3
