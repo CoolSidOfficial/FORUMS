@@ -6,8 +6,10 @@ import Link from "next/link";
 
 export default function ProductSearch() {
   const router = useRouter();
+
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+
 
   const product_data = [
     {
@@ -48,176 +50,453 @@ export default function ProductSearch() {
     },
   ];
 
+
   const product_categories = [
     {
-      id: 1,
-      name: "Smartphones",
-      discussed_times: 234,
-      logo: "https://images.samsung.com/is/image/samsung/p6pim/in/smartphones/galaxy-s23-ultra/s23-ultra-5g-black-select-256gb-1-1.jpg",
+      id:1,
+      name:"Smartphones",
+      discussed_times:234
     },
     {
-      id: 2,
-      name: "Laptops",
-      discussed_times: 234,
-      logo: "https://images.samsung.com/is/image/samsung/p6pim/in/laptops/galaxybook-pro-14-2023/sbp14-2023-1-1.jpg",
+      id:2,
+      name:"Laptops",
+      discussed_times:180
     },
     {
-      id: 3,
-      name: "Audio",
-      discussed_times: 234,
-      logo: "https://images.samsung.com/is/image/samsung/p6pim/in/audio/galaxy-buds-pro-4/galaxy-buds-pro-4-1-1.jpg",
+      id:3,
+      name:"Audio",
+      discussed_times:150
     },
     {
-      id: 4,
-      name: "Gaming",
-      discussed_times: 234,
-      logo: "https://images.samsung.com/is/image/samsung/p6pim/in/gaming/galaxy-controller-s4/galaxy-controller-s4-1-1.jpg",
+      id:4,
+      name:"Gaming",
+      discussed_times:120
     },
   ];
 
-  // 🔥 MAIN FUNCTION (future backend connect point)
-  async function handleSearch() {
-    if (!url) return;
+
+
+  async function handleSearch(){
+
+    if(!url) return;
 
     setLoading(true);
 
-    try {
-      const res = await fetch("/api/product", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    try{
+
+      const res = await fetch("/api/product",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
         },
-        body: JSON.stringify({ url }),
+        body:JSON.stringify({
+          url
+        })
       });
+
 
       const data = await res.json();
 
-      if (data?.slug) {
+
+      if(data?.slug){
         router.push(`/product/${data.slug}`);
       }
-    } catch (err) {
-      console.error("Search failed:", err);
-    } finally {
-      setLoading(false);
+
+
+    }catch(err){
+
+      console.log("Search failed",err);
+
     }
+    finally{
+
+      setLoading(false);
+
+    }
+
   }
 
+
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* HEADER */}
-      <header className="flex bg-black p-4 items-center border-b border-gray-700">
-        <Link href="/tabs/categories" className="font-semibold p-4">
-          ← Back to forum
-        </Link>
 
-        <div className="text-2xl ml-4">Product Search</div>
+<div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-black text-white">
 
-        <div className="bg-orange-500 w-max rounded-xl text-xs p-1 ml-4 text-center">
-          Amazon & Flipkart
-        </div>
-      </header>
 
-      {/* SEARCH SECTION */}
-      <div className="flex flex-col mt-24 items-center">
-        <div className="bg-[#072a5f] p-6 rounded-lg w-full max-w-4xl">
-          <div className="text-white text-4xl">
-            Find Product Comments
-          </div>
+{/* HEADER */}
 
-          <div className="text-gray-300 text-lg mt-6">
-            Paste any Amazon or Flipkart product link
-          </div>
+<header className="flex items-center gap-4 p-5 border-b border-gray-800">
 
-          <div className="flex mt-10 gap-4">
-            <input
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              className="text-white border text-lg w-full h-12 rounded-lg p-3 bg-black"
-              placeholder="Paste Amazon or Flipkart Product URL..."
-            />
 
-            <button
-              onClick={handleSearch}
-              className="bg-amber-600 px-6 py-2 text-lg font-bold rounded"
-            >
-              {loading ? "Searching..." : "Search"}
-            </button>
-          </div>
+<Link
+href="/tabs/categories"
+className="text-gray-300 hover:text-white"
+>
+← Back
+</Link>
 
-          <ul className="p-4 text-gray-300 list-disc text-sm mt-6">
-            <li>Supports Amazon.in and Flipkart.com product links</li>
-            <li>If no comments exist, a new section will be created</li>
-            <li>Same link = same discussion page</li>
-          </ul>
-        </div>
 
-        {/* RECENT DISCUSSIONS */}
-        <div className="w-full max-w-6xl mt-12">
-          <div className="text-3xl p-4">Recent Product Discussions</div>
+<h1 className="text-2xl font-bold">
+Product Discussions
+</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {product_data.map((each, index) => (
-              <div key={index} className="p-6 bg-emerald-800 rounded">
-                <div className="text-xl font-semibold">{each.name}</div>
-                <div className="text-sm text-gray-200">
-                  {each.platform}
-                </div>
 
-                <div className="mt-2 text-green-300">
-                  ₹{each.price.toLocaleString()}
-                </div>
+<span className="bg-orange-500 text-black px-3 py-1 rounded-full text-xs font-bold">
+Amazon + Flipkart
+</span>
 
-                <div className="text-yellow-200">
-                  ⭐ {each.rating}
-                </div>
 
-                <div className="mt-2 text-sm">
-                  {each.comments} comments • {each.users} users
-                </div>
+</header>
 
-                <div className="text-xs text-gray-300">
-                  Active {each.active_minutes_ago} min ago
-                </div>
 
-                <Link
-                  href={`/product/demo-${index}`}
-                  className="mt-4 inline-block bg-orange-600 px-3 py-1 rounded"
-                >
-                  View Comments
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* CATEGORIES */}
-        <div className="bg-[#1F2937] p-6 rounded-lg mt-12 w-full max-w-6xl">
-          <div className="text-4xl">Popular Product Categories</div>
-          <div className="text-gray-400 text-lg">
-            Most discussed product types
-          </div>
+<main className="px-5 flex flex-col items-center">
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-            {product_categories.map((each) => (
-              <div key={each.id} className="text-center">
-                <img
-                  src={each.logo}
-                  alt={each.name}
-                  className="w-24 h-24 mx-auto rounded"
-                />
 
-                <div className="bg-[#374151] p-2 rounded mt-2">
-                  {each.name}
-                </div>
 
-                <div className="bg-[#374151] p-2 rounded mt-2">
-                  {each.discussed_times} discussions
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+{/* SEARCH */}
+
+<section
+className="
+mt-20
+w-full
+max-w-5xl
+bg-gradient-to-br
+from-blue-900
+to-blue-950
+rounded-3xl
+p-8
+border
+border-blue-800
+">
+
+
+<h2 className="text-4xl md:text-5xl font-bold">
+
+Discover What Users Say About Products
+
+</h2>
+
+
+<p className="mt-4 text-gray-300 text-lg">
+
+Paste any Amazon or Flipkart product link and join the discussion.
+
+</p>
+
+
+
+<div className="flex flex-col md:flex-row gap-4 mt-10">
+
+
+<input
+
+value={url}
+
+onChange={(e)=>setUrl(e.target.value)}
+
+placeholder="Paste product URL..."
+
+className="
+flex-1
+h-14
+rounded-xl
+bg-black
+border
+border-gray-700
+px-5
+text-lg
+outline-none
+focus:border-orange-500
+"
+
+/>
+
+
+
+<button
+
+onClick={handleSearch}
+
+className="
+bg-orange-500
+hover:bg-orange-600
+text-black
+font-bold
+rounded-xl
+px-10
+"
+
+>
+
+{
+loading?
+"Searching..."
+:
+"Find Discussion"
+}
+
+</button>
+
+
+</div>
+
+
+
+
+<div className="flex gap-3 mt-6 flex-wrap">
+
+
+<span className="bg-black px-4 py-2 rounded-full text-sm">
+✓ Amazon
+</span>
+
+
+<span className="bg-black px-4 py-2 rounded-full text-sm">
+✓ Flipkart
+</span>
+
+
+<span className="bg-black px-4 py-2 rounded-full text-sm">
+✓ Community Reviews
+</span>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+{/* DISCUSSIONS */}
+
+
+<section className="w-full max-w-6xl mt-16">
+
+
+<h2 className="text-3xl font-bold mb-6">
+Recent Discussions
+</h2>
+
+
+
+<div className="grid md:grid-cols-2 gap-6">
+
+
+{
+product_data.map((each,index)=>(
+
+
+<div
+key={index}
+className="
+bg-gray-900
+border
+border-gray-800
+rounded-2xl
+p-6
+hover:border-orange-500
+transition
+"
+>
+
+
+<div className="flex justify-between">
+
+
+<h3 className="font-bold text-xl">
+{each.name}
+</h3>
+
+
+<span className="text-yellow-400">
+⭐ {each.rating}
+</span>
+
+
+</div>
+
+
+
+<p className="text-gray-400 mt-2">
+{each.platform}
+</p>
+
+
+<p className="text-green-400 text-xl font-bold mt-4">
+
+₹{each.price.toLocaleString()}
+
+</p>
+
+
+
+<div className="flex gap-5 mt-4 text-sm">
+
+<span>
+💬 {each.comments} comments
+</span>
+
+<span>
+👥 {each.users} users
+</span>
+
+</div>
+
+
+
+<p className="text-gray-500 text-sm mt-3">
+
+🟢 Active {each.active_minutes_ago} min ago
+
+</p>
+
+
+
+
+<Link
+
+href={`/product/demo-${index}`}
+
+className="
+inline-block
+mt-5
+bg-orange-500
+text-black
+font-bold
+px-5
+py-2
+rounded-lg
+"
+
+>
+
+Join Discussion →
+
+</Link>
+
+
+
+</div>
+
+
+))
+}
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+{/* CATEGORIES */}
+
+
+<section
+className="
+w-full
+max-w-6xl
+mt-16
+bg-gray-900
+border
+border-gray-800
+rounded-3xl
+p-8
+"
+>
+
+
+<h2 className="text-3xl font-bold">
+Popular Categories
+</h2>
+
+
+<p className="text-gray-400 mt-2">
+Most discussed product types
+</p>
+
+
+
+
+<div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+
+
+{
+product_categories.map(each=>(
+
+
+<div
+
+key={each.id}
+
+className="
+bg-gray-800
+rounded-xl
+p-5
+text-center
+hover:bg-gray-700
+transition
+"
+
+>
+
+
+<div className="text-5xl">
+
+{
+each.name==="Smartphones"?
+"📱":
+each.name==="Laptops"?
+"💻":
+each.name==="Audio"?
+"🎧":
+"🎮"
+}
+
+</div>
+
+
+
+<h3 className="font-bold mt-3">
+{each.name}
+</h3>
+
+
+
+<p className="text-gray-400 text-sm mt-2">
+{each.discussed_times} discussions
+</p>
+
+
+
+</div>
+
+
+))
+}
+
+
+</div>
+
+
+</section>
+
+
+
+</main>
+
+
+</div>
+
   );
+
 }
