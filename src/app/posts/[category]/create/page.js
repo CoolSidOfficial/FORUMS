@@ -6,47 +6,57 @@ import Link from "next/link";
 
 export default function CreatePostPage() {
   const router = useRouter();
-  const { category } = useParams(); // ✅ DO NOT use ({ params })
+  const { category } = useParams();
 
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const res = await fetch(
-      `https://forums-backend-production-b81e.up.railway.app/api/posts/${category}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          author,
-          content,
-        }),
-      }
-    );
+    const token = localStorage.getItem("token");
 
-    if (!res.ok) {
-      throw new Error("Failed to create post");
+    if (!token) {
+      alert("Please login to create a post.");
+      router.push("/authenticate/login");
+      return;
     }
 
-    alert("Post created");
+    try {
+      const res = await fetch(
+        `https://forums-backend-production-b81e.up.railway.app/api/posts/${category}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title,
+            content,
+          }),
+        }
+      );
 
-    router.push(`/posts/${category}`);
-  } catch (err) {
-    console.error(err);
-    alert("Error creating post");
-  }
-};
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to create post");
+      }
+
+      alert("Post created successfully!");
+
+      router.push(`/posts/${category}`);
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Error creating post");
+    }
+  };
+
   return (
     <div className="max-w-2xl mx-auto p-8">
       <Link
-        href={`/posts/${category}`}   
+        href={`/posts/${category}`}
         className="text-gray-400 hover:text-white mb-6 inline-block"
       >
         ← Back to Posts
@@ -66,18 +76,9 @@ const handleSubmit = async (e) => {
           className="p-3 rounded-lg bg-[#0f172a] border border-gray-700"
         />
 
-        <input
-          type="text"
-          placeholder="Author"
-          required
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          className="p-3 rounded-lg bg-[#0f172a] border border-gray-700"
-        />
-
         <textarea
-          rows="6"
-          placeholder="Content..."
+          rows={8}
+          placeholder="Write your post..."
           required
           value={content}
           onChange={(e) => setContent(e.target.value)}
