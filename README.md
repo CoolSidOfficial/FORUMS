@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 CoolForum - Full Stack Technology Discussion Platform
 
-## Getting Started
+CoolForum is a full-stack community discussion platform where users can create, explore, and discuss technology topics including smartphones, laptops, gaming, AI, programming, cybersecurity, and more.
 
-First, run the development server:
+The platform allows users to create posts, browse discussions by category, view trending topics, and participate in future comment-based discussions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 🔐 Authentication
+- User signup and login
+- JWT-based authentication
+- Protected routes for creating posts
+- Token-based authorization using Bearer tokens
+- User identity attached automatically to posts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 📝 Posts System
+- Create technology discussions
+- Organize posts by categories
+- View posts by category
+- View individual post details
+- Automatic timestamps
+- Author association with users
 
-To learn more about Next.js, take a look at the following resources:
+Supported categories:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 📱 Smartphones
+- 💻 Laptops
+- 🎮 Gaming
+- 🤖 Artificial Intelligence
+- 👨‍💻 Programming
+- 🔐 Cybersecurity
+- ☁️ Cloud Computing
+- 🎧 Audio
+- 📺 Electronics
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 🔥 Trending Discussions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The trending section displays popular discussions from the community.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Current ranking considers:
+
+- Recent posts
+- Views
+- Likes
+- Comment activity
+
+Future improvements:
+- Reddit-style ranking algorithm
+- User voting system
+- Engagement scoring
+
+---
+
+### 💬 Comments (Coming Soon)
+
+Planned features:
+
+- Add comments to posts
+- Reply to comments
+- Nested discussions
+- Comment likes
+- Real-time updates
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+- Next.js 16
+- React
+- Tailwind CSS
+- Zustand
+- Next.js App Router
+
+
+## Backend
+
+- Node.js
+- Express.js
+- JWT Authentication
+- MongoDB
+- Mongoose
+
+
+## Database
+
+- MongoDB Atlas
+
+Collections:
