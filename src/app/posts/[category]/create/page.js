@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 
@@ -10,6 +10,15 @@ export default function CreatePostPage() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  // Check authentication when page opens
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/authenticate/login");
+    }
+  }, [router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,9 +53,10 @@ export default function CreatePostPage() {
         throw new Error(data.message || "Failed to create post");
       }
 
-      alert("Post created successfully!");
+      alert("Post created successfully");
 
       router.push(`/posts/${category}`);
+
     } catch (err) {
       console.error(err);
       alert(err.message || "Error creating post");
@@ -55,6 +65,7 @@ export default function CreatePostPage() {
 
   return (
     <div className="max-w-2xl mx-auto p-8">
+
       <Link
         href={`/posts/${category}`}
         className="text-gray-400 hover:text-white mb-6 inline-block"
@@ -66,7 +77,11 @@ export default function CreatePostPage() {
         Create Post in {category}
       </h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-6"
+      >
+
         <input
           type="text"
           placeholder="Title"
@@ -77,7 +92,7 @@ export default function CreatePostPage() {
         />
 
         <textarea
-          rows={8}
+          rows="8"
           placeholder="Write your post..."
           required
           value={content}
@@ -91,7 +106,9 @@ export default function CreatePostPage() {
         >
           Publish Post
         </button>
+
       </form>
+
     </div>
   );
 }
