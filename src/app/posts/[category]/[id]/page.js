@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CommentSection from "@/app/components/CommentSection";
 
 export default async function PostPage({ params }) {
   const { id, category } = await params;
@@ -52,33 +53,7 @@ export default async function PostPage({ params }) {
       </div>
 
 
-      {/* COMMENTS */}
-      <div className="mt-10">
-
-        <h2 className="text-2xl font-semibold mb-4">
-          Comments
-        </h2>
-
-
-        <textarea
-          placeholder="Write a comment..."
-          className="w-full border border-gray-700 rounded-lg p-3 mb-4 bg-transparent"
-        />
-
-
-        <button className="bg-blue-600 px-4 py-2 rounded-lg">
-          Post Comment
-        </button>
-
-
-        <div className="mt-6">
-          <p className="text-gray-500">
-            No comments yet. Be the first to comment!
-          </p>
-        </div>
-
-
-      </div>
+    <CommentSection postId={id} />
 
     </div>
   );
