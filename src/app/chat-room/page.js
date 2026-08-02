@@ -13,7 +13,7 @@ export default function ChatRoom() {
   // const username = user?.name;
   const username = "Guest_" + Math.floor(Math.random() * 1000);
   useEffect(() => {
-    socketRef.current = io("https://chat.168-144-22-229.nip.io/");
+    socketRef.current = io("https://chat.20.219.12.237.nip.io");
 
     socketRef.current.on("connect", () => {
       setConnected(true);
