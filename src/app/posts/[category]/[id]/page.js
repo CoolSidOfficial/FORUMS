@@ -5,7 +5,7 @@ export default async function PostPage({ params }) {
   const { id, category } = await params;
 
   const res = await fetch(
-    `https://forums-backend-production-b81e.up.railway.app/api/posts/post/${id}`,
+    `http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/api/posts/post/${id}`,
     {
       cache: "no-store",
     }

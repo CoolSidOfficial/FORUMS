@@ -24,7 +24,7 @@ function Signup() {
 
     try {
       const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/auth/signup", // ✅ fixed route
+        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/signup", // ✅ fixed route
 
         {
           method: "POST",

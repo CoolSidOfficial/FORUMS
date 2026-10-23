@@ -20,7 +20,7 @@ export default function useAuth() {
         }
 
         const res = await fetch(
-          "https://forums-backend-production-b81e.up.railway.app/auth/verify",
+          "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/verify",
           {
             headers: {
               Authorization: `Bearer ${token}`,

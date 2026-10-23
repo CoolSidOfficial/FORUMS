@@ -76,7 +76,7 @@ export default function ProfilePage() {
 
 
       const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/auth/update-profile",
+        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/update-profile",
         {
           method: "PUT",
 

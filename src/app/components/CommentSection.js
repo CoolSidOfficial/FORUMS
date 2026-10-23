@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const API = "https://forums-backend-production-b81e.up.railway.app";
+const API = "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com";
 
 export default function CommentSection({ postId }) {
   const [comments, setComments] = useState([]);

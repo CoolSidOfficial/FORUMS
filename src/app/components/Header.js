@@ -14,7 +14,7 @@ function Header() {
 
   const handleLogout = async () => {
     await fetch(
-      "https://forums-backend-production-b81e.up.railway.app/auth/logout",
+      "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/logout",
       {
         method: "POST",
         credentials: "include",

@@ -93,7 +93,7 @@ export default function ProductSearch() {
     try{
 
       const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/api/product",
+        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/api/product",
         {
           method:"POST",
 

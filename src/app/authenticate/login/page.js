@@ -21,7 +21,7 @@ function Login() {
 
     try {
       const res = await fetch(
-        "https://forums-backend-production-b81e.up.railway.app/auth/login",
+        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/login",
         {
           method: "POST",
           headers: {
@@ -132,7 +132,7 @@ function Login() {
 
         {/* ✅ Fixed: points to your backend URL, not a relative Next.js route */}
         
-       <a    href="https://forums-backend-production-b81e.up.railway.app/auth/google"
+       <a    href="http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/google"
           className="border border-gray-500 w-max px-6 py-3 text-lg rounded hover:bg-white hover:text-black transition-colors font-bold">
          Sign in with Google
         </a>
