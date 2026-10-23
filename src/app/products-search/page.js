@@ -93,7 +93,7 @@ export default function ProductSearch() {
     try{
 
       const res = await fetch(
-        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/api/product",
+        "https://forums.20.219.12.237.nip.io/api/product",
         {
           method:"POST",
 

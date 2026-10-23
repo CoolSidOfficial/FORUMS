@@ -14,7 +14,7 @@ function Header() {
 
   const handleLogout = async () => {
     await fetch(
-      "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/logout",
+      "https://forums.20.219.12.237.nip.io/auth/logout",
       {
         method: "POST",
         credentials: "include",

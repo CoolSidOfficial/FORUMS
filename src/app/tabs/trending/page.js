@@ -3,7 +3,7 @@ import Link from "next/link";
 async function Trending() {
 
   const res = await fetch(
-    "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/api/posts/trending",
+    "https://forums.20.219.12.237.nip.io/api/posts/trending",
     {
       cache: "no-store",
     }

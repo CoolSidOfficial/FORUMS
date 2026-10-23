@@ -33,7 +33,7 @@ const useAuthStore = create((set, get) => ({
     const token = localStorage.getItem("token");
 
     const res = await fetch(
-      "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/update-profile",
+      "https://forums.20.219.12.237.nip.io/auth/update-profile",
       {
         method: "PUT",
         headers: {
@@ -84,7 +84,7 @@ const useAuthStore = create((set, get) => ({
 
 
       const res = await fetch(
-        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/verify",
+        "https://forums.20.219.12.237.nip.io/auth/verify",
         {
           headers:{
             Authorization:`Bearer ${token}`

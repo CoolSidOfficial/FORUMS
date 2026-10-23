@@ -4,7 +4,7 @@ export default async function PostsByCategory({ params }) {
   const { category } = await params;
 
   const res = await fetch(
-    `http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/api/posts/${category}`,
+    `https://forums.20.219.12.237.nip.io/api/posts/${category}`,
     {
       cache: "no-store",
     }

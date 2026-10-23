@@ -6,7 +6,7 @@ export default async function ProductPage({ params }) {
 
 
   const res = await fetch(
-    `http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/api/product/${slug}`,
+    `https://forums.20.219.12.237.nip.io/api/product/${slug}`,
     {
       cache:"no-store",
     }

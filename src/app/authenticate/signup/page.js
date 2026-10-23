@@ -24,7 +24,7 @@ function Signup() {
 
     try {
       const res = await fetch(
-        "http://forums.20.219.12.237.nip.io?utm_source=chatgpt.com/auth/signup", // ✅ fixed route
+        "https://forums.20.219.12.237.nip.io/auth/signup", // ✅ fixed route
 
         {
           method: "POST",
